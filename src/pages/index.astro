@@ -1,6 +1,6 @@
 ---
 const files = import.meta.glob('../data/*.json', { eager: true });
-const allCrops: any[] = Object.values(files).sort((a: any, b: any) =>
+const allCrops: any[] = Object.values(files).map((mod: any) => mod.default).sort((a: any, b: any) =>
   parseInt(a.number) - parseInt(b.number)
 );
 

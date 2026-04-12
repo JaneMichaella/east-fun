@@ -11,12 +11,18 @@ import CoffeeBanner from '../../components/CoffeeBanner.astro';
 export async function getStaticPaths() {
   const files = import.meta.glob('../../data/*.json', { eager: true });
   return Object.values(files).map((mod: any) => ({
-    params: { slug: mod.slug },
-    props: { crop: mod },
+    params: { slug: mod.default?.slug ?? mod.slug },
+    props: { crop: mod.default ?? mod },
   }));
 }
 
-const { crop } = Astro.props;
+const { slug } = Astro.params;
+let crop = Astro.props.crop;
+if (!crop) {
+  const files = import.meta.glob('../../data/*.json', { eager: true });
+  const mod: any = Object.values(files).find((m: any) => (m.default?.slug ?? m.slug) === slug);
+  crop = mod?.default ?? mod;
+}
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
