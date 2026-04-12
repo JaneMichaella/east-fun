@@ -1,0 +1,25 @@
+---
+interface BenefitItem {
+  icon: string;
+  title: string;
+  desc: string;
+}
+interface Props {
+  title: string;
+  items: BenefitItem[];
+}
+const { title, items } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">功效与营养</p>
+  <h2 class="section-title">{title}</h2>
+  <div class="benefits-grid">
+    {items.map(item => (
+      <div class="benefit-item">
+        <p class="benefit-icon">{item.icon}</p>
+        <p class="benefit-title">{item.title}</p>
+        <p class="benefit-desc">{item.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import CropHero from '../../components/CropHero.astro';
+import VideoSection from '../../components/VideoSection.astro';
+import PartnerSection from '../../components/PartnerSection.astro';
+import RegionSection from '../../components/RegionSection.astro';
+import FlavorSection from '../../components/FlavorSection.astro';
+import BenefitsSection from '../../components/BenefitsSection.astro';
+import StorySection from '../../components/StorySection.astro';
+import CoffeeBanner from '../../components/CoffeeBanner.astro';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../data/*.json', { eager: true });
+  return Object.values(files).map((mod: any) => ({
+    params: { slug: mod.slug },
+    props: { crop: mod },
+  }));
+}
+
+const { crop } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{crop.name} — 一方物</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="site-logo">一方物<span>YIFANGWU</span></a>
+    <a href="/" class="back-link">所有风物</a>
+  </header>
+
+  <CropHero
+    name={crop.name}
+    nameEn={crop.nameEn}
+    category={crop.category}
+    region={crop.region}
+    tagline={crop.tagline}
+  />
+
+  <main class="content">
+    <VideoSection url={crop.video.url} title={crop.video.title} />
+
+    <PartnerSection partners={crop.partners} />
+
+    <RegionSection {...crop.regionSection} />
+
+    <FlavorSection
+      title={crop.flavorSection.title}
+      notes={crop.flavorSection.notes}
+      desc={crop.flavorSection.desc}
+      keywords={crop.keywords}
+    />
+
+    <BenefitsSection
+      title={crop.benefitsSection.title}
+      items={crop.benefitsSection.items}
+    />
+
+    <StorySection {...crop.storySection} />
+
+    <CoffeeBanner {...crop.coffeeSection} />
+  </main>
+
+  <footer class="site-footer">
+    <span class="logo-mark">一</span>
+    一方物 YIFANGWU · 以一杯咖啡，联结一片土地
+  </footer>
+
+</body>
+</html>

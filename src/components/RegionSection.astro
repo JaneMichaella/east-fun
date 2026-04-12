@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  name: string;
+  nameEn: string;
+  desc: string;
+  badge: string;
+}
+const { title, name, nameEn, desc, badge } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">产地与地域</p>
+  <h2 class="section-title">{title}</h2>
+  <div class="region-card">
+    <p class="region-name">{name}</p>
+    <p class="region-name-en">{nameEn}</p>
+    <p class="region-desc">{desc}</p>
+    <span class="region-badge">{badge}</span>
+  </div>
+</section>

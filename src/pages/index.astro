@@ -1,17 +1,144 @@
 ---
+const files = import.meta.glob('../data/*.json', { eager: true });
+const allCrops: any[] = Object.values(files).sort((a: any, b: any) =>
+  parseInt(a.number) - parseInt(b.number)
+);
 
+const categories: Record<string, any[]> = {};
+for (const crop of allCrops) {
+  if (!categories[crop.category]) categories[crop.category] = [];
+  categories[crop.category].push(crop);
+}
 ---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一方物 — 东方风物图鉴</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .index-divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+      margin: 40px auto;
+    }
+    .index-divider::before,
+    .index-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+    .index-divider-text {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      white-space: nowrap;
+    }
+    .number-stat { text-align: center; padding: 20px; }
+    .number-stat-num {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .number-stat-label { font-size: 11px; color: var(--mist); letter-spacing: 0.2em; }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 600px;
+      margin: 0 auto 60px;
+      border: 1px solid rgba(184, 147, 90, 0.15);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .stats-row .number-stat { border-right: 1px solid rgba(184, 147, 90, 0.15); }
+    .stats-row .number-stat:last-child { border-right: none; }
+  </style>
+</head>
+<body>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <header class="site-header">
+    <a href="/" class="site-logo">一方物<span>YIFANGWU</span></a>
+    <span style="color: var(--gold); font-size: 12px; letter-spacing: 0.2em;">东方风物图鉴</span>
+  </header>
+
+  <section class="index-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag fade-in fade-in-1">一物一地 · 一杯咖啡</div>
+    <h1 class="index-hero-title fade-in fade-in-2">风物图鉴</h1>
+    <p class="index-hero-subtitle fade-in fade-in-3">A Field Guide to Eastern Ingredients</p>
+    <p class="index-hero-desc fade-in fade-in-4">
+      每一杯一方物，背后都是一片土地、一群人、一种文化。<br />
+      我们走遍山川，寻访风物，以咖啡为媒，<br />
+      让更多人认识这些被遗忘或低估的东方食材。
+    </p>
+    <div class="index-divider">
+      <span class="index-divider-text">助农 · 溯源 · 共生</span>
+    </div>
+    <div class="stats-row">
+      <div class="number-stat">
+        <p class="number-stat-num">13</p>
+        <p class="number-stat-label">风物食材</p>
+      </div>
+      <div class="number-stat">
+        <p class="number-stat-num">11</p>
+        <p class="number-stat-label">产地省区</p>
+      </div>
+      <div class="number-stat">
+        <p class="number-stat-num">∞</p>
+        <p class="number-stat-label">联结故事</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="crops-section">
+    {Object.entries(categories).map(([category, crops]) => (
+      <div class="crops-category">
+        <h2 class="crops-category-title">{category}</h2>
+        <div class="crops-grid">
+          {crops.map((crop: any) => (
+            <a href={`/crops/${crop.slug}`} class="crop-card">
+              <p class="crop-card-number">{crop.number}</p>
+              <p class="crop-card-name">{crop.name}</p>
+              <p class="crop-card-name-en">{crop.nameEn}</p>
+              <p class="crop-card-region">📍 {crop.region}</p>
+              <div class="crop-card-keywords">
+                {crop.keywords.map((kw: string) => (
+                  <span class="crop-card-kw">{kw}</span>
+                ))}
+              </div>
+              <p class="crop-card-coffee">{crop.coffeeSection.name}</p>
+              <span class="crop-card-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div style="text-align:center; padding: 80px 40px; border-top: 1px solid rgba(184,147,90,0.1); max-width: 600px; margin: 0 auto;">
+    <p style="font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 20px; letter-spacing: 0.1em;">
+      「以一杯咖啡，联结一片土地」
+    </p>
+    <p style="color: var(--mist); font-size: 13px; line-height: 2; letter-spacing: 0.05em;">
+      一方物相信，每一口好味道背后，<br />
+      都应该有一个被看见的农人，一片被珍视的土地。<br />
+      我们的助农不是公益噱头，是品牌的底层逻辑。
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <span class="logo-mark">一</span>
+    一方物 YIFANGWU · 东方风物图鉴
+  </footer>
+
+</body>
 </html>

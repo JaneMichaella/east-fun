@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  quote: string;
+  text: string;
+  farmerAvatar: string;
+  farmerName: string;
+  farmerRole: string;
+}
+const { title, quote, text, farmerAvatar, farmerName, farmerRole } = Astro.props;
+const paragraphs = text.split('\n\n');
+---
+<section class="section">
+  <p class="section-label">农户 · 助农故事</p>
+  <h2 class="section-title">{title}</h2>
+  <div class="story-block">
+    <p class="story-quote">{quote}</p>
+    <p class="story-text">
+      {paragraphs.map((para, i) => (
+        <>
+          {para}
+          {i < paragraphs.length - 1 && <><br /><br /></>}
+        </>
+      ))}
+    </p>
+    <div class="story-farmer">
+      <div class="story-farmer-avatar">{farmerAvatar}</div>
+      <div class="story-farmer-info">
+        <p class="story-farmer-name">{farmerName}</p>
+        <p class="story-farmer-role">{farmerRole}</p>
+      </div>
+    </div>
+  </div>
+</section>

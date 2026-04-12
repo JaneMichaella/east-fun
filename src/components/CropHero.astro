@@ -1,0 +1,22 @@
+---
+interface Props {
+  name: string;
+  nameEn: string;
+  category: string;
+  region: string;
+  tagline: string;
+}
+const { name, nameEn, category, region, tagline } = Astro.props;
+---
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag fade-in fade-in-1">{category}</div>
+  <h1 class="hero-title fade-in fade-in-2">{name}</h1>
+  <p class="hero-title-en fade-in fade-in-2">{nameEn}</p>
+  <p class="hero-region fade-in fade-in-3">产地：<strong>{region}</strong></p>
+  <p class="hero-tagline fade-in fade-in-4">{tagline}</p>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    探索
+  </div>
+</section>

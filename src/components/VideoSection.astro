@@ -1,0 +1,25 @@
+---
+interface Props {
+  url: string;
+  title: string;
+}
+const { url, title } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">农作物宣传视频</p>
+  <h2 class="section-title">走进产地</h2>
+  {url ? (
+    <div class="video-wrapper">
+      <iframe
+        src={url}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  ) : (
+    <div class="video-placeholder">
+      <span>视频即将上线</span>
+    </div>
+  )}
+</section>

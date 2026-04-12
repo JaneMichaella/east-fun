@@ -1,0 +1,25 @@
+---
+interface Partner {
+  name: string;
+  url: string;
+}
+interface Props {
+  partners: Partner[];
+}
+const { partners } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">合作单位</p>
+  <h2 class="section-title">产地直采合作伙伴</h2>
+  {partners.length > 0 ? (
+    <div class="partner-list">
+      {partners.map(p => (
+        <a href={p.url} class="partner-link" target="_blank" rel="noopener noreferrer">
+          {p.name}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="partner-placeholder">合作单位信息即将更新</div>
+  )}
+</section>

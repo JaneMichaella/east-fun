@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  nameEn: string;
+  tagline: string;
+}
+const { name, nameEn, tagline } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">风物 × 咖啡</p>
+  <div class="coffee-banner">
+    <div class="coffee-banner-icon">☕</div>
+    <div class="coffee-banner-content">
+      <p class="coffee-banner-label">对应产品</p>
+      <p class="coffee-banner-name">{name}</p>
+      <p class="coffee-banner-name-en">{nameEn}</p>
+      <p class="coffee-banner-tagline">{tagline}</p>
+    </div>
+  </div>
+</section>

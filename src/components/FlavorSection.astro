@@ -1,0 +1,29 @@
+---
+interface FlavorNote {
+  label: string;
+  text: string;
+}
+interface Props {
+  title: string;
+  notes: FlavorNote[];
+  desc: string;
+  keywords: string[];
+}
+const { title, notes, desc, keywords } = Astro.props;
+---
+<section class="section">
+  <p class="section-label">特点与风味</p>
+  <h2 class="section-title">{title}</h2>
+  <div class="flavor-grid">
+    {notes.map(n => (
+      <div class="flavor-item">
+        <p class="flavor-item-label">{n.label}</p>
+        <p class="flavor-item-text">{n.text}</p>
+      </div>
+    ))}
+  </div>
+  <p style="color:var(--paper-warm); line-height:1.9; margin-bottom:24px;">{desc}</p>
+  <div class="keywords">
+    {keywords.map(kw => <span class="keyword">{kw}</span>)}
+  </div>
+</section>
