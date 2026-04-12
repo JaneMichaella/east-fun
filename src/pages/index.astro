@@ -18,7 +18,7 @@ for (const crop of allCrops) {
   <title>一方物 — 东方风物图鉴</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href={`${import.meta.env.BASE_URL}css/style.css`} />
+  <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/css/style.css`} />
   <style>
     .index-divider {
       display: flex;
@@ -105,7 +105,7 @@ for (const crop of allCrops) {
         <h2 class="crops-category-title">{category}</h2>
         <div class="crops-grid">
           {crops.map((crop: any) => (
-            <a href={`${import.meta.env.BASE_URL}crops/${crop.slug}`} class="crop-card">
+            <a href={`${import.meta.env.BASE_URL}/crops/${crop.slug}`} class="crop-card">
               <p class="crop-card-number">{crop.number}</p>
               <p class="crop-card-name">{crop.name}</p>
               <p class="crop-card-name-en">{crop.nameEn}</p>
