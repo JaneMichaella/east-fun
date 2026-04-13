@@ -483,12 +483,13 @@ p {
   font-size: 12px;
   letter-spacing: 0.2em;
 }
-.site-footer .logo-mark {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  color: var(--gold);
+.footer-emblem {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
   display: block;
-  margin-bottom: 12px;
+  margin: 0 auto 16px;
+  opacity: 0.75;
 }
 
 /* ---------- Index Page Specific ---------- */
