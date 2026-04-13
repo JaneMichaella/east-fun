@@ -2,22 +2,46 @@
 interface Partner {
   name: string;
   url: string;
+  type?: 'store' | 'product';
 }
 interface Props {
   partners: Partner[];
 }
 const { partners } = Astro.props;
+
+// 店铺：有 URL 的 store 类型，大字无框可点击
+const storeLinks = partners.filter(p => p.url && p.type !== 'product');
+// 商品/文章：有 URL 的 product 类型，加框可点击
+const products = partners.filter(p => p.url && p.type === 'product');
+// 纯文字信息：无 URL 的任意类型
+const texts = partners.filter(p => !p.url);
 ---
 <section class="section">
   <p class="section-label">合作单位</p>
   <h2 class="section-title">产地直采合作伙伴</h2>
   {partners.length > 0 ? (
     <div class="partner-list">
-      {partners.map(p => (
-        <a href={p.url} class="partner-link" target="_blank" rel="noopener noreferrer">
-          {p.name}
+      {storeLinks.map(p => (
+        <a href={p.url} class="partner-link partner-link--store" target="_blank" rel="noopener noreferrer">
+          {p.name} ↗
         </a>
       ))}
+      {texts.length > 0 && (
+        <div class="partner-texts">
+          {texts.map(p => (
+            <span class="partner-text">{p.name}</span>
+          ))}
+        </div>
+      )}
+      {products.length > 0 && (
+        <div class="partner-products">
+          {products.map(p => (
+            <a href={p.url} class="partner-link partner-link--product" target="_blank" rel="noopener noreferrer">
+              {p.name} ↗
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   ) : (
     <div class="partner-placeholder">合作单位信息即将更新</div>

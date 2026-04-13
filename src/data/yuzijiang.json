@@ -8,7 +8,11 @@
   "tagline": "山水孕育的黑金",
   "keywords": ["鲜", "咸", "层次", "轻奢"],
   "video": { "url": "https://player.bilibili.com/player.html?bvid=BV1QD4y1U7q4&t=3.1", "title": "鱼子酱宣传视频" },
-  "partners": [],
+  "partners": [
+    { "name": "大鲟 · 鲟鱼子酱 DAXUN CAVIAR", "url": "https://mp.weixin.qq.com/s/TpNkdGIT6IlHWJ5H1ECfeA", "type": "store" },
+    { "name": "放心鱼工程产业集团 · 北京中科天利水产科技有限公司", "url": "" },
+    { "name": "咨询电话：400-600-6156 / 18610097049", "url": "" }
+  ],
   "regionSection": {
     "title": "四川雅安，山水孕育的黑金",
     "name": "四川 · 雅安",

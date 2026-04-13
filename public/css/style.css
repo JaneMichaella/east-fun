@@ -807,28 +807,60 @@ p {
 /* ---------- Partner Section ---------- */
 .partner-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 12px;
 }
-.partner-link {
+
+/* 店铺：大字无框 */
+.partner-link--store {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--gold-light);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.partner-link--store:hover { color: var(--gold); }
+
+/* 商品行容器 */
+.partner-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 商品：加框小标签 */
+.partner-link--product {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: 1px solid rgba(184, 147, 90, 0.35);
+  border: 1px solid rgba(184, 147, 90, 0.45);
   color: var(--gold);
   font-size: 13px;
-  letter-spacing: 0.1em;
-  padding: 10px 20px;
+  letter-spacing: 0.08em;
+  padding: 8px 18px;
   border-radius: var(--radius);
   text-decoration: none;
-  transition: background var(--transition), border-color var(--transition);
   font-family: var(--font-serif);
+  transition: background var(--transition), border-color var(--transition);
 }
-.partner-link::after { content: ' ↗'; font-family: var(--font-sans); }
-.partner-link:hover {
+.partner-link--product:hover {
   background: rgba(184, 147, 90, 0.08);
-  border-color: rgba(184, 147, 90, 0.6);
+  border-color: var(--gold);
 }
+
+/* 纯文字（无链接）条目 */
+.partner-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.partner-text {
+  color: var(--mist);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+
 .partner-placeholder {
   color: var(--mist);
   font-size: 13px;

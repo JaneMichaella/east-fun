@@ -8,7 +8,10 @@
   "tagline": "早红晚黑紫宝石",
   "keywords": ["花青素", "果香", "清甜", "抗氧"],
   "video": { "url": "https://player.bilibili.com/player.html?bvid=BV1oj411j7yd&t=119.8", "title": "黑枸杞宣传视频" },
-  "partners": [],
+  "partners": [
+    { "name": "宁夏全通枸杞企业店", "url": "https://m.tb.cn/h.iLFbYuQcFWwxkn4", "type": "store" },
+    { "name": "2024新货 · 宁夏中宁黑枸杞鲜浆（小圣）", "url": "https://e.tb.cn/h.iLFZpydZKuNZuPg?tk=UQoE55t2mCU", "type": "product" }
+  ],
   "regionSection": {
     "title": "中宁枸杞之乡，黑色原浆珍品",
     "name": "宁夏 · 中宁县",
