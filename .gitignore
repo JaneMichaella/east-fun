@@ -26,3 +26,5 @@ pnpm-debug.log*
 # AI instructions
 CLAUDE.md
 AGENT.md
+
+docs/
